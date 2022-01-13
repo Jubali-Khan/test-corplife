@@ -1,4 +1,3 @@
-import './App.css';
 import { LoginSpace } from './LoginSpace';
 
 // App with header (logo-left), background and text
