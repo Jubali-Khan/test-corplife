@@ -3,11 +3,11 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 
 const formStyles = css`
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  margin: 10% 25%;
-  padding: 2%;
+  margin: 5% 27% 10% 27%;
+  padding: 4%;
   text-align: left;
   min-width: 40%;
 
@@ -33,12 +33,23 @@ const formStyles = css`
     border: 1px solid black;
   }
 
-  button {
-    height: 30px;
+  .loginButton {
+    height: 40px;
     margin: 5px;
+    background-image: linear-gradient(
+      to right,
+      #ff512f 0%,
+      #dd2476 51%,
+      #ff512f 100%
+    );
+    border-radius: 10px;
+    border: none;
+    color: white;
   }
 
   .passwordForgotten {
+    height: 30px;
+    margin: 5px;
     background-color: transparent;
     border: none;
     :hover {
@@ -101,7 +112,9 @@ export function LoginSpace() {
           type="password"
         />
 
-        <button onClick={loginHandler}>Anmelden</button>
+        <button onClick={loginHandler} className="loginButton">
+          Anmelden
+        </button>
         <button className="passwordForgotten">Passwort vergessen</button>
       </form>
     </>

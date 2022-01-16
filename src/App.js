@@ -1,18 +1,22 @@
-// import './App.css';
+import './App.css';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { LoginSpace } from './LoginSpace';
-
-// const appStyles = css`
-//   text-align: center;
-//   background-image: url('./bg.png');
-//   background-position: center;
-//   background-size: cover;
-// `;
+import logoCorplife from './logoCorplife.png';
 
 function App() {
   return (
-    <div>
+    <div className="App">
+      <header>
+        <img src={logoCorplife} alt="Corplife logo" />
+        <br />
+        <br />
+        <br />
+        <h2>Willkommen auf der Corplife Plattform!</h2>
+        <p>
+          Wir haben die professionellsten HR-Tools der Welt an einem Ort für Sie
+          zusammengeführt.
+        </p>
+      </header>
       <LoginSpace />
     </div>
   );
