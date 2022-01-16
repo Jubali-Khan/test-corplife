@@ -1,7 +1,14 @@
+// import './App.css';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { LoginSpace } from './LoginSpace';
 
-// App with header (logo-left), background and text
-// LoginSpace component with heading, 2 text input fields and 2 buttons
+// const appStyles = css`
+//   text-align: center;
+//   background-image: url('./bg.png');
+//   background-position: center;
+//   background-size: cover;
+// `;
 
 function App() {
   return (

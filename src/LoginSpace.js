@@ -5,17 +5,15 @@ import { useState } from 'react';
 const formStyles = css`
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  margin: 10% 25%;
   padding: 2%;
   text-align: left;
   min-width: 40%;
 
+  background-color: white;
   display: flex;
   flex-direction: column;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -85%);
 
   label {
     margin: 3px;
@@ -52,10 +50,28 @@ const formStyles = css`
 export function LoginSpace() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
-  console.log(email);
+
+  const loginSampleEmail = 'eve.holt@reqres.in';
+  const loginSamplePassword = 'cityslicka';
+
+  async function loginHandler() {
+    const response = await fetch('https://reqres.in/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: loginSampleEmail,
+        password: loginSamplePassword,
+      }),
+    });
+    const loginDetails = await response.json();
+    console.log('loginDetails: ', loginDetails);
+  }
+
   return (
     <>
-      <form css={formStyles}>
+      <form css={formStyles} onSubmit={(e) => e.preventDefault()}>
         <p style={{ textAlign: 'center' }}>
           <strong>Bitte loggen Sie sich ein um fortzufahren.</strong>
         </p>
@@ -75,9 +91,10 @@ export function LoginSpace() {
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}
           placeholder="Ihr Passwort"
+          type="password"
         />
 
-        <button>Anmelden</button>
+        <button onClick={loginHandler}>Anmelden</button>
         <button className="passwordForgotten">Passwort vergessen</button>
       </form>
     </>
