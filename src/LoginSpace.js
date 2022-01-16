@@ -49,8 +49,9 @@ const formStyles = css`
 
 export function LoginSpace() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
 
+  // https://reqres.in/ was used for successful login
   const loginSampleEmail = 'eve.holt@reqres.in';
   const loginSamplePassword = 'cityslicka';
 
@@ -67,6 +68,11 @@ export function LoginSpace() {
     });
     const loginDetails = await response.json();
     console.log('loginDetails: ', loginDetails);
+
+    // resolved response object (loginDetails) contains a 'token' key
+    if (loginDetails.token) {
+      localStorage.setItem('token', JSON.stringify(loginDetails.token));
+    }
   }
 
   return (
@@ -83,6 +89,7 @@ export function LoginSpace() {
           value={email}
           onChange={(e) => setEmail(e.currentTarget.value)}
           placeholder="E-Mail-Adresse"
+          type="email"
         />
 
         <label htmlFor="Passwort">Passwort</label>
