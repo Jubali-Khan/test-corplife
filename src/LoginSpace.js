@@ -58,7 +58,7 @@ const formStyles = css`
   }
 `;
 
-export function LoginSpace() {
+export function LoginSpace(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -67,14 +67,17 @@ export function LoginSpace() {
   const loginSamplePassword = 'cityslicka';
 
   async function loginHandler() {
+    if (email !== loginSampleEmail || password !== loginSamplePassword) {
+      return props.toast('Please enter correct email and password');
+    }
     const response = await fetch('https://reqres.in/api/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        email: loginSampleEmail,
-        password: loginSamplePassword,
+        email: email,
+        password: password,
       }),
     });
     const loginDetails = await response.json();
@@ -101,6 +104,7 @@ export function LoginSpace() {
           onChange={(e) => setEmail(e.currentTarget.value)}
           placeholder="E-Mail-Adresse"
           type="email"
+          required
         />
 
         <label htmlFor="Passwort">Passwort</label>
@@ -110,6 +114,7 @@ export function LoginSpace() {
           onChange={(e) => setPassword(e.currentTarget.value)}
           placeholder="Ihr Passwort"
           type="password"
+          required
         />
 
         <button onClick={loginHandler} className="loginButton">
